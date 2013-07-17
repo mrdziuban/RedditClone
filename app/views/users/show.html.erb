@@ -1,6 +1,6 @@
 <h1><%= @user.username %></h1>
 
-Subs:
+Moderated subs:
 <ul>
   <% @user.subs.each do |sub| %>
     <li><%= link_to sub.name, sub_url(sub) %></li>
@@ -21,7 +21,7 @@ Submitted links:
       <% else %>
         <%= button_to "Upvote", upvote_link_url(link), method: :get %>
       <% end %>
-      
+
       <% if @current_user == link.user %>
         <%= button_to "Edit", edit_link_url(link), method: :get %>
         <%= button_to "Delete", link_url(link), method: :delete %>
@@ -29,6 +29,3 @@ Submitted links:
     </li>
   <% end %>
 </ul>
-
-<br>
-<%= link_to "New Sub", new_sub_url %>

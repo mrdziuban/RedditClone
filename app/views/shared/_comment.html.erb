@@ -2,8 +2,7 @@
   <li>
     <%= link_to comment.text, comment_url(comment) %>
     <% if comment.user == @current_user %>
-      <%= ", " %>
-      <%= link_to "Edit", edit_comment_url(comment) %>
+      <%= button_to "Edit", edit_comment_url(comment), method: :get %>
     <% end %>
   </li>
   <% if comments_by_parent[comment.id] %>

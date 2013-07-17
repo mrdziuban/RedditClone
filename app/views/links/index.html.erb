@@ -1,12 +1,24 @@
 <h1>All Links</h1>
 
+<% sorted_links = sort_links(@links) %>
+
 <ul>
-  <% @links.each do |link| %>
+  <% sorted_links.each do |link| %>
     <li>
       <%= link_to link.title, link.url %>, <%= link_to "Comments", link_url(link)%>, Posted by: <%= link_to link.user.username, user_url(link.user) %>
+
+      <% if what_is_users_vote?(link).nil? %>
+        <%= button_to "Upvote", upvote_link_url(link) %>
+        <%= button_to "Downvote", downvote_link_url(link) %>
+      <% elsif what_is_users_vote?(link) %>
+        <%= button_to "Downvote", downvote_link_url(link) %>
+      <% else %>
+        <%= button_to "Upvote", upvote_link_url(link) %>
+      <% end %>
+      
       <% if @current_user == link.user %>
-        , <%= link_to "Edit", edit_link_url(link) %>
-        , <%= button_to "Delete", link_url(link), method: :delete %>
+        <%= button_to "Edit", edit_link_url(link), method: :get %>
+        <%= button_to "Delete", link_url(link), method: :delete %>
       <% end %>
     </li>
     <br>

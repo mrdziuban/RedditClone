@@ -29,8 +29,10 @@
   <label for="link_comment_0_text">Text</label>
   <br>
   <textarea name="link[comments_attributes][0][text]" id="link_comment_0_text"></textarea>
-  <input type="hidden" id="link[comments_attributes][0][parent_comment_id]" value="<%= nil %>">
-  <input type="hidden" id="link[comments_attributes][0][user_id]" value="<%= @current_user.id %>">
+  <label for="link_comment_0_parent_comment_id">
+  <input type="hidden" name="link[comments_attributes][0][parent_comment_id]" value="<%= nil %>" id="link_comment_0_parent_comment_id">
+  <label for="link_comment_0_user_id">
+  <input type="hidden" name="link[comments_attributes][0][user_id]" value="<%= @current_user.id %>" id="link_comment_0_user_id">
   <br>
 
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">

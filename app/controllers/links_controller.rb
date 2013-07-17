@@ -1,6 +1,7 @@
 class LinksController < ApplicationController
   def index
     @links = Link.all
+    p @links
   end
 
   def new
@@ -8,6 +9,10 @@ class LinksController < ApplicationController
   end
 
   def create
+    if params[:link][:comments_attributes]["0"][:text] == ""
+      params[:link][:comments_attributes]["0"][:user_id] = ""
+    end
+    p params
     @link = Link.new(params[:link])
     if @link.save
       redirect_to link_url(@link)

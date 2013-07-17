@@ -4,8 +4,8 @@ RedditClone::Application.routes.draw do
   resources :subs
   resources :links do
     member do
-      get "upvote"
-      get "downvote"
+      post "upvote"
+      post "downvote"
     end
   end
   resources :comments, except: [:index]

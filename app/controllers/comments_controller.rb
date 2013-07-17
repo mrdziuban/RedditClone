@@ -6,10 +6,10 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     if @comment.save
-      redirect_to comment_url(@comment.parent_comment)
+      redirect_to link_url(@comment.link)
     else
       flash[:notices] = "Could not add comment"
-      redirect_to comment_url(@comment.parent_comment)
+      redirect_to link_url(@comment.link)
     end
   end
 
