@@ -43,4 +43,30 @@ class LinksController < ApplicationController
     link.destroy
     redirect_to links_url
   end
+
+  def upvote
+    @link = Link.find(params[:id])
+    @user_vote = @current_user.user_votes.where(link_id: @link.id).first
+    if @user_vote
+      @user_vote.updown = true
+      @user_vote.save
+      redirect_to link_url(@link)
+    else
+      @current_user.user_votes.create(link_id: @link.id, updown: true)
+      redirect_to link_url(@link)
+    end
+  end
+
+  def downvote
+    @link = Link.find(params[:id])
+    @user_vote = @current_user.user_votes.where(link_id: @link.id).first
+    if @user_vote
+      @user_vote.updown = false
+      @user_vote.save
+      redirect_to link_url(@link)
+    else
+      @current_user.user_votes.create(link_id: @link.id, updown: false)
+      redirect_to link_url(@link)
+    end
+  end
 end
