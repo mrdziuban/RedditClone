@@ -1,7 +1,6 @@
 class LinksController < ApplicationController
   def index
     @links = Link.all
-    p @links
   end
 
   def new
@@ -55,10 +54,10 @@ class LinksController < ApplicationController
     if @user_vote
       @user_vote.updown = true
       @user_vote.save
-      redirect_to link_url(@link)
+      redirect_to :back
     else
       @current_user.user_votes.create(link_id: @link.id, updown: true)
-      redirect_to link_url(@link)
+      redirect_to :back
     end
   end
 
@@ -68,10 +67,10 @@ class LinksController < ApplicationController
     if @user_vote
       @user_vote.updown = false
       @user_vote.save
-      redirect_to link_url(@link)
+      redirect_to :back
     else
       @current_user.user_votes.create(link_id: @link.id, updown: false)
-      redirect_to link_url(@link)
+      redirect_to :back
     end
   end
 end
