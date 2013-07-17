@@ -1,0 +1,17 @@
+<h1><%= @user.username %></h1>
+
+Fill in shit here
+
+Subs:
+<ul>
+  <% @user.subs.each do |sub| %>
+    <li><%= link_to sub.name, sub_url(sub) %></li>
+  <% end %>
+</ul>
+
+Submitted links:
+<ul>
+  <% @user.links.each do |link| %>
+    <%= link_to link.title, link.url %>
+  <% end %>
+</ul>

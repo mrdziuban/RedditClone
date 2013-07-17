@@ -1,0 +1,10 @@
+<h1>New Sub</h1>
+
+<form action="<%= subs_url %>" method="post">
+  <label for="sub_name">Name</label>
+  <input type="text" name="sub[name]" id="sub_name" value="<%= @sub.name %>">
+  <br>
+  <input type="hidden" name="sub[moderator]" value="<%= @current_user.id %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Create Sub">
+</form>
