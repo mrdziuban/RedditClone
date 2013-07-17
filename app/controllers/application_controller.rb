@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authenticate
 
-  helper_method :what_is_users_vote?, :sort_links
+  helper_method :what_is_users_vote?
 
   def authenticate
     session[:token] ||= SecureRandom.urlsafe_base64

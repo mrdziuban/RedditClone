@@ -1,6 +1,7 @@
 class LinksController < ApplicationController
   def index
-    @links = Link.all
+    links = Link.all
+    @sorted_links = Kaminari.paginate_array(sort_links(links)).page(params[:page])
   end
 
   def new

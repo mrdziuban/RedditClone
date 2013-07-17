@@ -1,9 +1,8 @@
 <h1>All Links</h1>
 
-<% sorted_links = sort_links(@links) %>
-
+<%= paginate @sorted_links %>
 <ul>
-  <% sorted_links.each do |link| %>
+  <% @sorted_links.each do |link| %>
     <li>
       <%= link_to link.title, link.url %>, <%= link_to "Comments", link_url(link)%>, Posted by: <%= link_to link.user.username, user_url(link.user) %>
 

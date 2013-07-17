@@ -1,10 +1,9 @@
 <h1><%= @sub.name %></h1>
 <h4>Moderator: <%= @sub.user.username %></h4>
 
-<% sorted_links = sort_links(@sub.links) %>
-
+<%= paginate @sorted_links %>
 <ul>
-  <% sorted_links.each do |link| %>
+  <% @sorted_links.each do |link| %>
     <li>
       <%= link_to link.title, link.url %>, <%= link_to "Comments", link_url(link)%>, Posted by: <%= link_to link.user.username, user_url(link.user) %>
 

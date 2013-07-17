@@ -1,5 +1,6 @@
 class Link < ActiveRecord::Base
   attr_accessible :text, :title, :url, :user_id, :sub_ids, :comments_attributes
+  paginates_per 25
 
   belongs_to :user
   has_many :link_subs

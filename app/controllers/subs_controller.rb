@@ -25,6 +25,7 @@ class SubsController < ApplicationController
 
   def show
     @sub = Sub.find(params[:id])
+    @sorted_links = Kaminari.paginate_array(sort_links(@sub.links)).page(params[:page])
   end
 
   def edit
