@@ -1,0 +1,28 @@
+<h1>New Link</h1>
+
+<form action="<%= links_url %>" method="post">
+  <label for="link_title">Title</label>
+  <input type="text" name="link[title]" id="link_title" value="<%= @link.title %>">
+  <br>
+  <label for="link_url">URL</label>
+  <input type="url" name="link[url]" id="link_url" value="<%= @link.url %>">
+  <br>
+  <label for="link_text">Text</label>
+  <input type="text" name="link[text]" id="link_text" value="<%= @link.text %>">
+  <br>
+  
+  <% Sub.all.each do |sub| %>
+    <% html_id = "link_sub_ids_#{sub.id}" %>
+    <input type="checkbox" name="link[sub_ids][]" value="<%= sub.id %>" id="<%= html_id %>">
+    <label for="<%= html_id %>"><%= sub.name %></label>
+    <br>
+  <% end %>
+  <input type="hidden" name="link[sub_ids][]" value="">
+  <br>
+  <input type="hidden" name="link[user_id]" value="<%= @current_user.id %>">
+  <br>
+
+  <input type="hidden" name="sub[moderator]" value="<%= @current_user.id %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Submit Link">
+</form>

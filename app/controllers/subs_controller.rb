@@ -19,7 +19,6 @@ class SubsController < ApplicationController
       redirect_to sub_url(@sub)
     else
       flash[:notices] = "Could not create sub"
-      p @sub.errors.full_messages
       render :new
     end
   end

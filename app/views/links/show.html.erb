@@ -1,0 +1,11 @@
+<h1><%= link_to @link.title, @link.url %></h1>
+
+Text: <%= @link.text %>
+
+
+<h3>Comments</h3>
+<!-- Add comments here -->
+
+<% if @current_user == @link.user %>
+  <%= link_to "Edit link", edit_link_url(@link) %>
+<% end %>

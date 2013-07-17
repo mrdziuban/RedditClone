@@ -25,7 +25,7 @@
       <label for="<%= html_id %>"><%= sub.name %></label>
       <br>
     <% end %>
-    <input type="hidden" name="sub[links_attributes][<%= i %>][sub_ids][]" value="<%= @sub.id %>">
+    <input type="hidden" name="sub[links_attributes][<%= i %>][sub_ids][]" value="">
     <br>
     <input type="hidden" name="sub[links_attributes][<%= i %>][user_id]" value="<%= @current_user.id %>">
     <br>

@@ -10,6 +10,12 @@ Subs:
 Submitted links:
 <ul>
   <% @user.links.each do |link| %>
-    <%= link_to link.title, link.url %>
+    <li>
+      <%= link_to link.title, link.url %>
+      <% if @current_user == link.user %>
+        <%=", "%>
+        <%=link_to "Edit link", edit_link_url(@link)%>
+      <% end %>
+    </li>
   <% end %>
 </ul>

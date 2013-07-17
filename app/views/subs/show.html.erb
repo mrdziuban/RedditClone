@@ -4,7 +4,7 @@
   <% @sub.links.each do |link| %>
     <li>
       <%= link_to link.title, link.url %>, <%= link_to "Comments", link_url(link)%>
-      <% if @current_user = link.user %>
+      <% if @current_user == link.user %>
         , <%= link_to "Edit", edit_link_url(link) %>
       <% end %>
     </li>

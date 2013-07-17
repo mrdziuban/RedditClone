@@ -10,6 +10,8 @@
 <% if @current_user %>
   Logged in as: <%= @current_user.username %>
   <br>
+  <%= link_to "Profile", user_url(@current_user) %>
+  <br>
   <br>
 <% end %>
 <% if flash[:notices] %>
