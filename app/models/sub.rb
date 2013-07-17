@@ -4,7 +4,7 @@ class Sub < ActiveRecord::Base
   belongs_to :user, foreign_key: :moderator
   has_many :link_subs, dependent: :destroy
   has_many :links, through: :link_subs
-  accepts_nested_attributes_for :links, reject_if: :all_blank
+  accepts_nested_attributes_for :links, reject_if: proc {|attrs| attrs["title"].blank?}
 
   validates :name, presence: true, uniqueness: true
 end

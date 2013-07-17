@@ -9,11 +9,10 @@ class LinksController < ApplicationController
   end
 
   def create
-    if params[:link][:comments_attributes]["0"][:text] == ""
-      params[:link][:comments_attributes]["0"][:user_id] = ""
-    end
-    p params
     @link = Link.new(params[:link])
+    @link.comments.each do |comment|
+      comment.user_id = @current_user.id
+    end
     if @link.save
       redirect_to link_url(@link)
     else
