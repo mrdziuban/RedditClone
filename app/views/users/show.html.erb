@@ -11,10 +11,10 @@ Submitted links:
 <ul>
   <% @user.links.each do |link| %>
     <li>
-      <%= link_to link.title, link.url %>
+      <%= link_to link.title, link.url %>, <%= link_to "Comments", link_url(link)%>
       <% if @current_user == link.user %>
-        <%=", "%>
-        <%=link_to "Edit link", edit_link_url(link)%>
+        , <%=link_to "Edit", edit_link_url(link)%>
+        , <%= button_to "Delete", link_url(link), method: :delete %>
       <% end %>
     </li>
   <% end %>

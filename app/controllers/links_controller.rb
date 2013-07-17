@@ -1,4 +1,8 @@
 class LinksController < ApplicationController
+  def index
+    @links = Link.all
+  end
+
   def new
     @link = Link.new
   end
@@ -9,9 +13,6 @@ class LinksController < ApplicationController
       redirect_to link_url(@link)
     else
       flash[:notices] = "Could not create link"
-      p @link.errors.full_messages
-      p "PARAMS"
-      p params
       render :new
     end
   end
@@ -38,6 +39,8 @@ class LinksController < ApplicationController
   end
 
   def destroy
-
+    link = Link.find(params[:id])
+    link.destroy
+    redirect_to links_url
   end
 end

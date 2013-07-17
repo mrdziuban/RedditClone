@@ -19,10 +19,19 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
+    if @comment.user != @current_user
+      redirect_to comment_url(@comment)
+    end
   end
 
   def update
-
+    @comment = Comment.find(params[:id])
+    if @comment.update_attributes(params[:comment])
+      redirect_to comment_url(@comment)
+    else
+      flash[:notices] = "Could not update comment"
+      render :edit
+    end
   end
 
   def destroy

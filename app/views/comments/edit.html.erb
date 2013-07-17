@@ -1,0 +1,13 @@
+<h3>Edit comment</h3>
+<form action="<%= comment_url(@comment) %>" method="post">
+  <label for="comment_text">Text</label>
+  <br>
+  <textarea name="comment[text]" id="comment_text"><%= @comment.text %></textarea>
+  <input type="hidden" name="comment[parent_comment_id]" value="<%= @comment.parent_comment_id %>">
+  <input type="hidden" name="comment[link_id]" value="<%= @comment.link.id %>">
+  <input type="hidden" name="comment[user_id]" value="<%= @current_user.id %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="put">
+  <br>
+  <input type="submit" value="Update comment">
+</form>

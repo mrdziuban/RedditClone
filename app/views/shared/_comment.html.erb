@@ -1,5 +1,11 @@
 <ul>
-  <li><%= link_to comment.text, comment_url(comment) %></li>
+  <li>
+    <%= link_to comment.text, comment_url(comment) %>
+    <% if comment.user == @current_user %>
+      <%= ", " %>
+      <%= link_to "Edit", edit_comment_url(comment) %>
+    <% end %>
+  </li>
   <% if comments_by_parent[comment.id] %>
     <% comments_by_parent[comment.id].each do |comm| %>
       <%= render partial: "shared/comment", locals: {comments_by_parent: comments_by_parent, comment: comm} %>

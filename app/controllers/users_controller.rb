@@ -27,14 +27,23 @@ class UsersController < ApplicationController
   end
 
   def edit
-
+    @user = User.find(params[:id])
+    if @user != @current_user
+      redirect_to user_url(@user)
+    end
   end
 
   def update
-
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      redirect_to user_url(@user)
+    else
+      flash[:notices] = "Could not update user"
+      render :edit
+    end
   end
 
   def destroy
-
+    @user = User.find(params[:id])
   end
 end

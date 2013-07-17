@@ -2,7 +2,12 @@ RedditClone::Application.routes.draw do
   resources :users
   resource :sessions, only: [:new, :create, :destroy]
   resources :subs
-  resources :links, except: [:index]
+  resources :links do
+    member do
+      get "upvote"
+      get "downvote"
+    end
+  end
   resources :comments, except: [:index]
   root to: "sessions#new"
   # The priority is based upon order of creation:

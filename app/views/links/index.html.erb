@@ -1,20 +1,14 @@
-<h1><%= @sub.name %></h1>
+<h1>All Links</h1>
 
 <ul>
-  <% @sub.links.each do |link| %>
+  <% @links.each do |link| %>
     <li>
       <%= link_to link.title, link.url %>, <%= link_to "Comments", link_url(link)%>, Posted by: <%= link_to link.user.username, user_url(link.user) %>
       <% if @current_user == link.user %>
         , <%= link_to "Edit", edit_link_url(link) %>
-        , <%= button_to "Delete", link_url(link) %>
+        , <%= button_to "Delete", link_url(link), method: :delete %>
       <% end %>
     </li>
     <br>
   <% end %>
 </ul>
-
-<br>
-<% if @sub.user == @current_user %>
-  <%= link_to "Edit Sub", edit_sub_url %>
-  <%= button_to "Delete Sub", sub_url(@sub), method: :delete %>
-<% end %>
