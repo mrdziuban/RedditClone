@@ -12,7 +12,10 @@
   <br>
   <br>
 <% end %>
-<%= flash[:notices] if flash[:notices] %>
+<% if flash[:notices] %>
+  <%= flash[:notices] %>
+  <% flash[:notices] = nil %>
+<% end %>
 
 <%= yield %>
 

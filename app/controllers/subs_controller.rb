@@ -8,11 +8,18 @@ class SubsController < ApplicationController
   end
 
   def create
+    5.times do |i|
+      if params[:sub][:links_attributes]["#{i}"][:title] == ""
+        params[:sub][:links_attributes]["#{i}"][:sub_ids] = []
+        params[:sub][:links_attributes]["#{i}"][:user_id] = ""
+      end
+    end
     @sub = Sub.new(params[:sub])
     if @sub.save
       redirect_to sub_url(@sub)
     else
-      flash[:notices] = "Name already taken"
+      flash[:notices] = "Could not create sub"
+      p @sub.errors.full_messages
       render :new
     end
   end
