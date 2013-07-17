@@ -3,6 +3,7 @@
     <%= link_to comment.text, comment_url(comment) %>
     <% if comment.user == @current_user %>
       <%= button_to "Edit", edit_comment_url(comment), method: :get %>
+      <%= button_to "Delete", comment_url(comment), method: :delete %>
     <% end %>
   </li>
   <% if comments_by_parent[comment.id] %>
