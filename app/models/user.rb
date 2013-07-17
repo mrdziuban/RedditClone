@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :user_votes#, dependent: :destroy
 
-  validates :username, presence: true, uniqueness: {scope: :username}
+  validates :username, presence: true, uniqueness: true
   validates :password, presence: :true, length: {minimum: 6}, on: :create
   validates :password, confirmation: true, allow_nil: true
   validates :password_confirmation, presence: true, length: {minimum: 6}, on: :create
