@@ -15,4 +15,5 @@
 <br>
 <% if @sub.user == @current_user %>
   <%= link_to "Edit Sub", edit_sub_url %>
+  <%= button_to "Delete Sub", sub_url(@sub), method: :delete %>
 <% end %>

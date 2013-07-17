@@ -4,8 +4,23 @@ Text: <%= @link.text %>
 
 
 <h3>Comments</h3>
-<!-- Add comments here -->
+
+<% comments_by_parent = @link.comments_by_parent %>
+
+<% if comments_by_parent[nil] %>
+  <% comments_by_parent[nil].each do |comment| %>
+    <%= render partial: "shared/comment", locals: {comments_by_parent: comments_by_parent, comment: comment} %>
+  <% end %>
+<% end %>
 
 <% if @current_user == @link.user %>
   <%= link_to "Edit link", edit_link_url(@link) %>
 <% end %>
+<br>
+
+<h3>This link is in:</h3>
+<ul>
+  <% @link.link_subs.each do |ls| %>
+    <li><%= link_to ls.sub.name, sub_url(ls.sub) %></li>
+  <% end %>
+</ul>

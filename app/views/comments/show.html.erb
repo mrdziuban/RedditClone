@@ -1,0 +1,22 @@
+<h1>Comment: <%= @comment.text %></h1>
+
+<% comments_by_parent = @comment.link.comments_by_parent %>
+
+<% if comments_by_parent[@comment.parent_comment_id] %>
+  <% comments_by_parent[@comment.parent_comment_id].each do |comment| %>
+    <%= render partial: "shared/comment", locals: {comments_by_parent: comments_by_parent, comment: comment} %>
+  <% end %>
+<% end %>
+
+<h3>Reply to this comment</h3>
+<form action="<%= comments_url %>" method="post">
+  <label for="comment_text">Text</label>
+  <br>
+  <textarea name="comment[text]" id="comment_text"></textarea>
+  <input type="hidden" name="comment[parent_comment_id]" value="<%= @comment.id %>">
+  <input type="hidden" name="comment[link_id]" value="<%= @comment.link.id %>">
+  <input type="hidden" name="comment[user_id]" value="<%= @current_user.id %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <br>
+  <input type="submit" value="Post comment">
+</form>

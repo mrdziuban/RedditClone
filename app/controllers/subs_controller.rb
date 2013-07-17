@@ -45,6 +45,7 @@ class SubsController < ApplicationController
   end
 
   def destroy
-
+    sub = Sub.find(params[:id])
+    sub.destroy
   end
 end
