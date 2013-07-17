@@ -9,6 +9,7 @@ class SubsController < ApplicationController
 
   def create
     @sub = Sub.new(params[:sub])
+    @sub.moderator = @current_user.id
     @sub.links.each do |link|
       link.user_id = @current_user.id
     end

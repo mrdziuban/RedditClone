@@ -29,8 +29,6 @@
     <br>
   <% end %>
 
-
-  <input type="hidden" name="sub[moderator]" value="<%= @current_user.id %>">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="submit" value="Create Sub">
 </form>
