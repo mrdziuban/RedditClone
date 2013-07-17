@@ -4,6 +4,26 @@
   <label for="sub_name">Name</label>
   <input type="text" name="sub[name]" id="sub_name" value="<%= @sub.name %>">
   <br>
+  <br>
+
+  Links:
+  <br>
+
+  <% 5.times do |i| %>
+    <label for="sub_link_<%= i %>_title">Title</label>
+    <input type="text" name="sub[links_attributes][<%= i %>][title]" id="sub_link_<%= i %>_title">
+    <br>
+    <label for="sub_link_<%= i %>_url">URL</label>
+    <input type="url" name="sub[links_attributes][<%= i %>][url]" id="sub_link_<%= i %>_url">
+    <br>
+    <label for="sub_link_<%= i %>_text">Text</label>
+    <input type="text" name="sub[links_attributes][<%= i %>][text]" id="sub_link_<%= i %>_text">
+    <br>
+    <input type="hidden" name="sub[links_attributes][<%= i %>][user_id]" value="<%= @current_user.id %>">
+    <br>
+  <% end %>
+
+
   <input type="hidden" name="sub[moderator]" value="<%= @current_user.id %>">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="submit" value="Create Sub">

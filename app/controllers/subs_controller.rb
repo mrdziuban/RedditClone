@@ -22,11 +22,20 @@ class SubsController < ApplicationController
   end
 
   def edit
-
+    @sub = Sub.find(params[:id])
+    if @sub.user != @current_user
+      redirect_to sub_url(@sub)
+    end
   end
 
   def update
-
+    @sub = Sub.find(params[:id])
+    if @sub.update_attributes(params[:sub])
+      redirect_to sub_url(@sub)
+    else
+      flash[:notices] = "Could not update sub"
+      render :edit
+    end
   end
 
   def destroy
