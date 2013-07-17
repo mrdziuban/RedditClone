@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :subs, foreign_key: :moderator
   has_many :links
+  has_many :comments
 
   validates :username, presence: true, uniqueness: {scope: :username}
   validates :password, presence: true, length: {minimum: 6}, on: :create, confirmation: true

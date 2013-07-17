@@ -14,8 +14,11 @@ Submitted links:
       <%= link_to link.title, link.url %>
       <% if @current_user == link.user %>
         <%=", "%>
-        <%=link_to "Edit link", edit_link_url(@link)%>
+        <%=link_to "Edit link", edit_link_url(link)%>
       <% end %>
     </li>
   <% end %>
 </ul>
+
+<br>
+<%= link_to "New Sub", new_sub_url %>
