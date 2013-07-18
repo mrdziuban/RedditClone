@@ -46,5 +46,6 @@ class SubsController < ApplicationController
   def destroy
     sub = Sub.find(params[:id])
     sub.destroy
+    redirect_to subs_url
   end
 end
