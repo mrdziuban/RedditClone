@@ -35,6 +35,13 @@ Submitted links:
 Posted comments:
 <ul>
   <% @user.comments.each do |comment| %>
-    <%= link_to comment.text, comment_url(comment) %><%= ", #{(link_to 'Parent comment', comment_url(comment.parent_comment))}" if comment.parent_comment_id %>, <%= link_to "Full comments", link_url(comment.link) %>
+    <li>
+      <%= link_to comment.text, comment_url(comment) %><%= ", #{(link_to 'Parent comment', comment_url(comment.parent_comment))}" if comment.parent_comment_id %>, <%= link_to "Full comments", link_url(comment.link) %>
+
+      <% if @current_user == comment.user %>
+        <%= button_to "Edit", edit_comment_url(comment), method: :get %>
+        <%= button_to "Delete", comment_url(comment), method: :delete %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
