@@ -31,3 +31,10 @@ Submitted links:
     </li>
   <% end %>
 </ul>
+
+Posted comments:
+<ul>
+  <% @user.comments.each do |comment| %>
+    <%= link_to comment.text, comment_url(comment) %><%= ", #{(link_to 'Parent comment', comment_url(comment.parent_comment))}" if comment.parent_comment_id %>, <%= link_to "Full comments", link_url(comment.link) %>
+  <% end %>
+</ul>
